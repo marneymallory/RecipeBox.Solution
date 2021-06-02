@@ -7,13 +7,13 @@ namespace RecipeBox.Models
   {
     public Recipe()
     {
-      CategoryRecipe = new HashSet<CategoryRecipe>();
+      CategoryRecipes = new HashSet<CategoryRecipe>();
     }
-    public string Name {get; set;}
-    public int RecipeId {get; set;}
-    public int Rating {get; set;}
-    public string Ingredient {get; set;}
-    public virtual ApplicationUser User {get; set;}
-    public virtual ICollection<CategoryRecipe> CategoryRecipe {get; set;}
+    public string Name { get; set; }
+    public int RecipeId { get; set; }
+    public int Rating { get; set; }
+    public string Ingredient { get; set; }
+    public virtual ApplicationUser User { get; set; }
+    public virtual ICollection<CategoryRecipe> CategoryRecipes { get; set; }
   }
 }
