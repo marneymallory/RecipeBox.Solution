@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
-using ToDoList.Models;
+using RecipeBox.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace RecipeBox.Controllers
 {
-  public class CategoriesControler : Controller
+  public class CategoriesController : Controller
   {
     private readonly RecipeBoxContext _db;
     public CategoriesController(RecipeBoxContext db)
@@ -34,7 +34,7 @@ namespace RecipeBox.Controllers
     public ActionResult Details(int id)
     {
       var thisCategory = _db.Categories
-      .Include(category => category.JoinEntities)
+      .Include(category => category.CategoryRecipes)
       .ThenInclude(join => join.Recipe)
       .FirstOrDefault(category => category.CategoryId == id);
       return View(thisCategory);
@@ -62,34 +62,8 @@ namespace RecipeBox.Controllers
     {
       var thisCategory = _db.Categories.FirstOrDefault(category => category.CategoryId == id);
       _db.Categories.Remove(thisCategory);
-      .SaveChanges();
+      _db.SaveChanges();
       return RedirectToAction("Index");
     }
   }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
 }
